@@ -1,25 +1,37 @@
-const express = require('express')
-const fs = require("node:fs/promises")
-const path = require("node:path")
-const app = express()
-
+const express = require("express");
 
 const ContactsController = require("../../controllers/contacts.js");
+const schemas = require("../../models/contacts.js");
+const validateBody = require("../../middleware/validateBody.js");
+const router = express.Router();
 
-const router = express.Router()
+router.get("/", ContactsController.get);
 
-router.get('/', ContactsController.get )
-
-router.get('/:contactId', ContactsController.getById)
+router.get("/:contactId", ContactsController.getById);
 
 const jsonParser = express.json();
 
-router.post('/', jsonParser, ContactsController.add)
+router.post(
+  "/",
+  jsonParser,
+  validateBody(schemas.contactSchema),
+  ContactsController.add
+);
 
-router.delete('/:contactId', ContactsController.remove)
+router.delete("/:contactId", ContactsController.remove);
 
-router.put('/:contactId', jsonParser, ContactsController.update)
+router.put(
+  "/:contactId",
+  jsonParser,
+  validateBody(schemas.contactSchema),
+  ContactsController.update
+);
 
-router.patch('/:contactId/favorite', jsonParser, ContactsController.updateFavorite)
+router.patch(
+  "/:contactId/favorite",
+  jsonParser,
+  validateBody(schemas.updateFavoriteSchema),
+  ContactsController.updateFavorite
+);
 
-module.exports = router
+module.exports = router;

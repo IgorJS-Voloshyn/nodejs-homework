@@ -20,7 +20,7 @@ function auth(req, res, next) {
     try {
       const user = await User.findById(decode.id).exec();
 
-      if (user.token !== token) {
+      if (!user || user.token !== token || !user.token) {
         return res.status(401).send({
           message: "Not authorized",
         });

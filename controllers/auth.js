@@ -2,11 +2,7 @@ const User = require("../models/user");
 const bcrypt = require("bcrypt");
 const Joi = require("joi");
 const jwt = require("jsonwebtoken");
-
-const usersSchema = Joi.object({
-  email: Joi.string().email().required(),
-  password: Joi.required(),
-});
+const userSchema = require("../models/user");
 
 async function register(req, res, next) {
   const { error, value } = usersSchema.validate(req.body);
@@ -29,7 +25,7 @@ async function register(req, res, next) {
       },
     });
   } catch (error) {
-    return res.status(400).send(error);
+    return next(error);
   }
 }
 
@@ -68,8 +64,7 @@ async function login(req, res, next) {
       },
     });
   } catch (error) {
-    console.log(error);
-    return res.status(400).send(error);
+    return next(error);
   }
 }
 

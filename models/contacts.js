@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const Joi = require("joi");
 
 const contactSchema = new mongoose.Schema({
   name: {
@@ -21,6 +22,17 @@ const contactSchema = new mongoose.Schema({
   },
 });
 
+const updateFavoriteSchema = Joi.object({
+  favorite: Joi.boolean()
+    .required()
+    .messages({ "any.required": `Missing field favorite` }),
+});
+
+const schemas = {
+  contactSchema,
+  updateFavoriteSchema,
+};
+
 const Contact = mongoose.model("Contact", contactSchema);
 
-module.exports = Contact;
+module.exports = { Contact, schemas };

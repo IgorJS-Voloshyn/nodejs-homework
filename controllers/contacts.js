@@ -3,21 +3,7 @@ const Contact = require("../models/contacts.js");
 const { error } = require("node:console");
 const Joi = require("joi");
 const { v4: uuidv4 } = require("uuid");
-
-const contactSchema = Joi.object({
-  name: Joi.string().required(),
-  email: Joi.string().email().required(),
-  phone: Joi.required(),
-  favorite: Joi.boolean(),
-});
-
-const contactUpdateSchema = Joi.object({
-  id: Joi.required(),
-  name: Joi.string().required(),
-  email: Joi.string().email().required(),
-  phone: Joi.required(),
-  favorite: Joi.boolean(),
-});
+const schemas = require("../models/contacts.js");
 
 async function get(req, res, next) {
   try {
@@ -40,7 +26,7 @@ async function getById(req, res, next) {
 }
 
 async function add(req, res, next) {
-  const { error, value } = contactSchema.validate(req.body);
+  const { error, value } = schemas.contactSchema.validate(req.body);
   const newContact = await Contact.create({
     ...value,
     id: uuidv4(),
@@ -66,7 +52,7 @@ async function remove(req, res, next) {
 
 async function update(req, res, next) {
   const id = req.params["contactId"];
-  const { error, value } = contactUpdateSchema.validate(req.body);
+  const { error, value } = schemas.contactUpdateSchema.validate(req.body);
   if (typeof error !== "undefined") {
     res.status(400).json({ message: "missing fields" });
   }
