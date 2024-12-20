@@ -1,12 +1,12 @@
-import { initMongoConnection } from "./db/initMongoConnection.js";
-import { setupServer } from "./server.js";
+import { initMongoConnection } from './db/initMongoConnection.js';
+import { setupServer } from './server.js';
 
 const bootstrap = async () => {
   try {
     await initMongoConnection();
-    await setupServer();
+    setupServer();
   } catch (error) {
-    console.error("Error during bootstrap:", error);
+    console.error('Error during bootstrap:', error);
   }
 };
 

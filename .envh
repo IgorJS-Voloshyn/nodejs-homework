@@ -1,8 +1,0 @@
-# DB_URI = mongodb+srv://igorvoloshynjs:K1WE8KdBqAqybwUR@cluster0.ffh1p.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
-# JWT = WCkc7f5xNJ42CRH
-
-   PORT=3000
-   MONGODB_USER=igorvoloshynjs
-   MONGODB_PASSWORD=K1WE8KdBqAqybwUR
-   MONGODB_URL=cluster0.ffh1p.mongodb.net
-   MONGODB_DB=students
