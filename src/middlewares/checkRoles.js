@@ -1,7 +1,7 @@
-import createHttpError from "http-errors";
+import createHttpError from 'http-errors';
 
-import { ContactsCollection } from "../db/models/contact.js";
-import { ROLES } from "../constants/index.js";
+import { ContactsCollection } from '../db/models/contact.js';
+import { ROLES } from '../constants/index.js';
 
 export const checkRoles =
   (...roles) =>
@@ -13,10 +13,6 @@ export const checkRoles =
     }
 
     const { role } = user;
-    // if (roles.includes(ROLES.USER) && role === ROLES.USER) {
-    //   next();
-    //   return;
-    // }
 
     if (roles.includes(ROLES.USER) && role === ROLES.USER) {
       const { contactId } = req.params;
