@@ -1,13 +1,13 @@
-import express from "express";
-import cookieParser from "cookie-parser";
-import contactRouter from "./routers/contacts.js";
-import authRoutes from "./routers/auth.js";
-import { env } from "./utils/env.js";
+import express from 'express';
+import cookieParser from 'cookie-parser';
+import contactRouter from './routers/contacts.js';
+import authRoutes from './routers/auth.js';
+import { env } from './utils/env.js';
 
-import { errorHandler } from "./middlewares/errorHandler.js";
-import { notFoundHandler } from "./middlewares/notFoundHandler.js";
+import { errorHandler } from './middlewares/errorHandler.js';
+import { notFoundHandler } from './middlewares/notFoundHandler.js';
 
-const PORT = Number(env("PORT", "3000"));
+const PORT = Number(env('PORT', '3000'));
 
 export const setupServer = () => {
   const app = express();
@@ -17,7 +17,7 @@ export const setupServer = () => {
   app.use(authRoutes);
   app.use(contactRouter);
 
-  app.use("*", notFoundHandler);
+  app.use('*', notFoundHandler);
 
   app.use(errorHandler);
 

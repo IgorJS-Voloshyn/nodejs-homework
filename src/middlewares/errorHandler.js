@@ -1,5 +1,4 @@
-import pkg from "http-errors";
-const { isHttpError } = pkg;
+import { isHttpError } from 'http-errors';
 
 function errorHandler(error, _req, res, _next) {
   if (isHttpError(error) === true) {
@@ -11,8 +10,8 @@ function errorHandler(error, _req, res, _next) {
 
   res.status(500).send({
     status: 500,
-    message: "Something went wrong",
-    data: "",
+    message: 'Something went wrong',
+    data: '',
   });
 }
 
