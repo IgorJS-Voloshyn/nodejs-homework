@@ -4,7 +4,7 @@ import contactRouter from './routers/contacts.js';
 import authRoutes from './routers/auth.js';
 import { env } from './utils/env.js';
 
-import { errorHandler } from './middlewares/errorHandler.js';
+import errorHandler from './middlewares/errorHandler.js';
 import { notFoundHandler } from './middlewares/notFoundHandler.js';
 
 const PORT = Number(env('PORT', '3000'));
