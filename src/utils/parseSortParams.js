@@ -1,21 +1,20 @@
-import { SORT_ORDER } from "../constants/index.js";
+import { SORT_ORDER } from '../constants/index.js';
 
 function parseSortBy(sortBy) {
   const keys = [
-    "_id",
-    "name",
-    "phoneNumber",
-    "email",
-    "isFavourite",
-    "contactType",
+    '_id',
+    'name',
+    'phoneNumber',
+    'email',
+    'isFavourite',
+    'contactType',
   ];
 
   if (keys.includes(sortBy)) {
-    // console.log(sortBy);
     return sortBy;
   }
 
-  return "_id";
+  return '_id';
 }
 
 function parseSortOrder(sortOrder) {

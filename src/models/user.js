@@ -1,25 +1,27 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
-const userSchema = new mongoose.Schema({
-  password: {
-    type: String,
-    required: [true, "Set password for user"],
+const userSchema = new mongoose.Schema(
+  {
+    name: {
+      type: String,
+      required: true,
+    },
+    email: {
+      type: String,
+      email: true,
+      unique: true,
+      required: true,
+    },
+    password: {
+      type: String,
+      required: true,
+    },
   },
-  email: {
-    type: String,
-    required: [true, "Email is required"],
-    unique: true,
+  {
+    timestamps: true,
+    versionKey: false,
   },
-  subscription: {
-    type: String,
-    enum: ["starter", "pro", "business"],
-    default: "starter",
-  },
-  token: {
-    type: String,
-    default: null,
-  },
-});
+);
 
 userSchema.methods.toJSON = function () {
   const obj = this.toObject();
@@ -27,6 +29,6 @@ userSchema.methods.toJSON = function () {
   return obj;
 };
 
-const User = mongoose.model("User", userSchema);
+const User = mongoose.model('User', userSchema);
 
 export { User };
