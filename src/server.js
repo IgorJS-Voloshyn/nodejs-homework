@@ -3,7 +3,7 @@ import cookieParser from 'cookie-parser';
 import contactRouter from './routers/contacts.js';
 import authRoutes from './routers/auth.js';
 import { env } from './utils/env.js';
-
+import { swaggerDocs } from './middlewares/swaggerDocs.js';
 import { errorHandler } from './middlewares/errorHandler.js';
 import { notFoundHandler } from './middlewares/notFoundHandler.js';
 import { UPLOAD_DIR } from './constants/index.js';
@@ -21,7 +21,10 @@ export const setupServer = () => {
   app.use('*', notFoundHandler);
 
   app.use(errorHandler);
+
   app.use('/uploads', express.static(UPLOAD_DIR));
+  app.use('/api-docs', swaggerDocs());
+
   app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
   });

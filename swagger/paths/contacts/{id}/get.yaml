@@ -1,0 +1,37 @@
+tags:
+  - Contacts
+summary: Get Contacts by id
+operationId: getContact
+description: 'Get Contacts by id'
+security:
+  - bearerAuth: []
+parameters:
+  - in: path
+    name: id
+    required: true
+    schema:
+      type: string
+      example: '670cea5b375cff6ee2210ad3'
+responses:
+  '200':
+    description: 'Get contact by id'
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+            - data
+          properties:
+            status:
+              type: integer
+              example: 200
+            message:
+              type: string
+              example: Successfully found student with id 670cea5b375cff6ee2210ad3!
+            data:
+              type: object
+              $ref: ..\..\components\schemas\contacts.yaml
+  '401':
+    $ref: '../../components/responses/401.yaml'

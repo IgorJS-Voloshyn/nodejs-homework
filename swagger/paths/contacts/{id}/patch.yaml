@@ -1,0 +1,76 @@
+tags:
+  - Contacts
+summary: Update a contact
+operationId: updateContact
+description: 'Partially update a contact by ID'
+security:
+  - bearerAuth: []
+parameters:
+  - in: path
+    name: id
+    required: true
+    schema:
+      type: string
+      example: '670cea5b375cff6ee2210ad3'
+    description: 'ID of the contact to update'
+requestBody:
+  content:
+    multipart/form-data:
+      schema:
+        type: object
+        properties:
+          name:
+            description: "Contact's name"
+            type: string
+            example: 'Updated Name'
+          phoneNumber:
+            description: "Contact's phone number"
+            type: string
+            example: '0998888888'
+          email:
+            description: "Contact's email"
+            type: string
+          isFavourite:
+            description: 'Is contact a favorite'
+            type: boolean
+            example: true
+          contactType:
+            description: 'Type of contact'
+            type: string
+            enum: ['home', 'personal']
+responses:
+  '200':
+    description: Successfully updated contact
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+            - data
+          properties:
+            status:
+              type: integer
+              example: 200
+            message:
+              type: string
+              example: Successfully updated contact with id 670cea5b375cff6ee2210ad3!
+            data:
+              type: object
+              $ref: ..\..\components\schemas\contacts.yaml
+  '401':
+    $ref: ../../components/responses/401.yaml
+  '404':
+    description: Contact not found
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            status:
+              type: integer
+              example: 404
+            message:
+              type: string
+              example: Contact with id 66e156c5bb5b90d367a19c92 not found.
