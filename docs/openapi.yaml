@@ -14,7 +14,7 @@
   'servers':
     [
       { 'url': 'http://localhost:3000' },
-      { 'url': 'https://hw7-swagger-9zgd.onrender.com' },
+      { 'url': 'https://hw7-swagger-o31g.onrender.com' },
     ],
   'tags':
     [
