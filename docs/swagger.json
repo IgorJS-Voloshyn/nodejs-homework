@@ -473,24 +473,19 @@
           }
         ],
         "responses": {
-          "200": {
+          "204": {
             "description": "Successfully deleted contact",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
                   "required": [
-                    "status",
-                    "message"
+                    "status"
                   ],
                   "properties": {
                     "status": {
                       "type": "integer",
-                      "example": 200
-                    },
-                    "message": {
-                      "type": "string",
-                      "example": "Successfully deleted contact with id 670cea5b375cff6ee2210ad3."
+                      "example": 204
                     }
                   }
                 }
